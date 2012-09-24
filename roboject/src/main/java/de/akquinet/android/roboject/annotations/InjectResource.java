@@ -17,7 +17,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
+ */
 package de.akquinet.android.roboject.annotations;
 
 import java.lang.annotation.ElementType;
@@ -27,25 +27,29 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * Inject a resource to the annotated field. For this to work, you must either use
+ * Inject a resource to the annotated field. For this to work, you must either
+ * use
  * <p>
- * You can specify the id of the resource to inject as annotation value name. If not
- * supplied, R.id.X will be used, where X is the name of the annotated field.
- * You can also supply the type of the resource.
+ * You can specify the id of the resource to inject as annotation value name. If
+ * not supplied, R.id.X will be used, where X is the name of the annotated
+ * field. You can also supply the type of the resource.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)
 public @interface InjectResource {
-    String DEFAULT_VALUE = "";
+	String DEFAULT_TYPE = "";
+	int DEFAULT_VALUE = 0;
 
-    /**
-     * Defines the id of the resource to inject. If not supplied,
-     * R.X.Y will be used, where X is a type string according to the field type and Y the name of the annotated field.
-     */
-    String name() default DEFAULT_VALUE;
+	/**
+	 * Defines the id of the resource to inject. If not supplied, R.X.Y will be
+	 * used, where X is a type string according to the field type and Y the name
+	 * of the annotated field.
+	 */
+	int name() default DEFAULT_VALUE;
 
-    /**
-     * Overrides the type detection by specifying the concrete type of this resource, e.g. drawable or string
-     */
-    String type() default DEFAULT_VALUE;
+	/**
+	 * Overrides the type detection by specifying the concrete type of this
+	 * resource, e.g. drawable or string
+	 */
+	String type() default DEFAULT_TYPE;
 }
